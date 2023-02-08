@@ -1,0 +1,787 @@
+<!DOCTYPE HTML>
+<html lang="zh_Hans " class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>SIGODEN的开源项目</title>
+        <meta name="robots" content="noindex" />
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="index.html">Projects</a></li><li class="chapter-item expanded "><a href="apitest.html"><strong aria-hidden="true">1.</strong> Apitest</a></li><li class="chapter-item expanded "><a href="argc.html"><strong aria-hidden="true">2.</strong> Argc</a></li><li class="chapter-item expanded "><a href="dufs.html"><strong aria-hidden="true">3.</strong> Dufs</a></li><li class="chapter-item expanded "><a href="dynimgen.html"><strong aria-hidden="true">4.</strong> DynImgen</a></li><li class="chapter-item expanded "><a href="netease-music.html"><strong aria-hidden="true">5.</strong> NeteaseMusic</a></li><li class="chapter-item expanded "><a href="opscan.html"><strong aria-hidden="true">6.</strong> Opscan</a></li><li class="chapter-item expanded "><a href="projclean.html"><strong aria-hidden="true">7.</strong> ProjClean</a></li><li class="chapter-item expanded "><a href="tomato-timer.html"><strong aria-hidden="true">8.</strong> Tomato-Timer</a></li><li class="chapter-item expanded "><a href="windows-switcher.html"><strong aria-hidden="true">9.</strong> Windows-Switcher</a></li><li class="chapter-item expanded "><a href="xf.html"><strong aria-hidden="true">10.</strong> Xf</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">SIGODEN的开源项目</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        <a href="https://github.com/sigoden/mydocs" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <ul>
+<li><a href="./apitest.html">Apitest</a>: 接口自动化测试工具</li>
+<li><a href="./argc.html">Argc</a>: 轻松处理 shell 命令行参数</li>
+<li><a href="./dufs.html">Dufs</a>: 一款简单的文件服务器， 支持静态文件伺服、上传、下载、webdav 云盘</li>
+<li><a href="./dynimgen.html">DynImgen</a>: 自托管动态图片生成服务</li>
+<li><a href="./netease-music.html">NeteaseMusic</a>: 浏览器扩展版网易云音乐</li>
+<li><a href="./opscan.html">Opscan</a>: 用 Rust 开发的端口扫描工具</li>
+<li><a href="./projclean.html">ProjClean</a>: 从系统中清除项目不必要文件目录</li>
+<li><a href="./tomato-timer.html">Tomato-Timer</a>: 命令行版番茄钟</li>
+<li><a href="./windows-switcher.html">Windows-Switcher</a>: Alt + `  切换同一应用不同窗口</li>
+<li><a href="./xf.html">Xf</a>: 多态命令，自动脚本别名</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="apitest-接口自动化测试工具"><a class="header" href="#apitest-接口自动化测试工具">Apitest: 接口自动化测试工具</a></h1>
+<p>Apitest 是一款使用类JSON的DSL编写测试用例的自动化测试工具。</p>
+<h2 id="安装"><a class="header" href="#安装">安装</a></h2>
+<p>推荐从<a href="https://github.com/sigoden/apitest/releases">Github Releases</a>下载可执行文件。</p>
+<p>Apitest工具是单可执行文件，不需要安装，放到<code>PATH</code>路径下面就可以直接运行</p>
+<pre><code># linux
+curl -L -o apitest https://github.com/sigoden/apitest/releases/latest/download/apitest-linux 
+chmod +x apitest
+sudo mv apitest /usr/local/bin/
+
+# macos
+curl -L -o apitest https://github.com/sigoden/apitest/releases/latest/download/apitest-macos
+chmod +x apitest
+sudo mv apitest /usr/local/bin/
+
+# npm
+npm install -g @sigodenjs/apitest
+</code></pre>
+<h2 id="开始使用"><a class="header" href="#开始使用">开始使用</a></h2>
+<p>编写测试文件 <code>httpbin.jsona</code></p>
+<pre><code>{
+  test1: {
+    req: {
+      url: &quot;https://httpbin.org/post&quot;,
+      method: &quot;post&quot;,
+      headers: {
+        'content-type': 'application/json',
+      },
+      body: {
+        v1: &quot;bar1&quot;,
+        v2: &quot;Bar2&quot;,
+      },
+    },
+    res: {
+      status: 200,
+      body: { @partial
+        json: {
+          v1: &quot;bar1&quot;,
+          v2: &quot;bar2&quot;
+        }
+      }
+    }
+  }
+}
+
+</code></pre>
+<p>运行测试</p>
+<pre><code>apitest httpbin.jsona
+
+main
+  test1 (0.944) ✘
+  main.test1.res.body.json.v2: bar2 ≠ Bar2
+
+  ...
+</code></pre>
+<p>用例测试失败，从Apitest打印的错误信息中可以看到, <code>main.test1.res.body.json.v2</code> 的实际值是 <code>Bar2</code> 而不是 <code>bar2</code>。</p>
+<p>我们修改 <code>bar2</code> 成 <code>Bar2</code> 后，再次执行 Apitest</p>
+<pre><code>apitest httpbin.jsona
+
+main
+  test1 (0.930) ✔
+</code></pre>
+<h2 id="特性"><a class="header" href="#特性">特性</a></h2>
+<h3 id="jsona-dsl"><a class="header" href="#jsona-dsl">JSONA-DSL</a></h3>
+<p>使用类JSON的DSL编写测试。文档即测试。</p>
+<pre><code>{
+  test1: { @describe(&quot;用户登录&quot;)
+    req: {
+      url: 'http://localhost:3000/login'
+      method: 'post',
+      body: {
+        user: 'jason',
+        pass: 'a123456,
+      }
+    },
+    res: {
+      status: 200
+      body: {
+        user: 'jason',
+        token: '', @type
+        expireIn: 0, @type
+      }
+    }
+  }
+}
+</code></pre>
+<p>根据上面的用例，我不用细说，有经验的后端应该能猜出这个接口传了什么参数，服务端返回了什么数据。</p>
+<p>Apitest 的工作原理就是根据<code>req</code>部分的描述构造请求传给后端，收到后端的响应数据后依据<code>res</code>部分的描述校验数据。</p>
+<p>拜托不要被DSL吓到啊。其实就是JSON，减轻了一些语法限制(不强制要求双引号，支持注释等)，只添加了一个特性：注解。上面例子中的<code>@describe</code>,<code>@type</code>就是注解。</p>
+<p>点击<a href="https://github.com/jsona/spec">jsona/spec</a>查看JSONA规范</p>
+<blockquote>
+<p>顺便说一句，有款vscode插件提供了DSL(jsona)格式的支持哦。</p>
+</blockquote>
+<p>为什么使用JSONA？</p>
+<p>接口测试的本质的就是构造并发送<code>req</code>数据，接收并校验<code>res</code>数据。数据即是主体又是核心，而JSON是最可读最通用的数据描述格式。
+接口测试还需要某些特定逻辑。比如请求中构造随机数，在响应中只校验给出的部分数据。</p>
+<p>JSONA = JSON + Annotation(注解)。JSON负责数据部分，注解负责逻辑部分。完美的贴合接口测试需求。</p>
+<h3 id="数据即断言"><a class="header" href="#数据即断言">数据即断言</a></h3>
+<p>这句话有点绕，下面举例说明下。</p>
+<pre><code class="language-json">{
+  &quot;foo1&quot;: 3,
+  &quot;foo2&quot;: [&quot;a&quot;, &quot;b&quot;],
+  &quot;foo3&quot;: {
+    &quot;a&quot;: 3,
+    &quot;b&quot;: 4
+  }
+}
+</code></pre>
+<p>假设接口响应数据如上，那么其测试用例如下:</p>
+<pre><code>{
+  test1: {
+    req: {
+    },
+    res: {
+      body: {
+        &quot;foo1&quot;: 3,
+        &quot;foo2&quot;: [&quot;a&quot;, &quot;b&quot;],
+        &quot;foo3&quot;: {
+          &quot;a&quot;: 3,
+          &quot;b&quot;: 4
+        }
+      }
+    }
+  }
+}
+</code></pre>
+<p>没错，就是一模一样的。Apitest 会对数据的各个部分逐一进行比对。有任何不一致的地方都会导致测试不通过。</p>
+<p>常规的测试工具提供的策略是做加法，这个很重要我才加一句断言。而在 Apitest 中，你只能做减法，这个数据不关注我主动忽略或放松校验。</p>
+<p>比如前面的用例</p>
+<pre><code>{
+  test1: { @describe(&quot;用户登录&quot;)
+    ...
+    res: {
+      body: {
+        user: 'jason',
+        token: '', @type
+        expireIn: 0, @type
+      }
+    }
+  }
+}
+</code></pre>
+<p>我们还是校验了所有的字段。因为<code>token</code>和<code>expireIn</code>值是变的，我们使用<code>@type</code>告诉 Apitest 只校验字段的类型，而忽略具体的值。</p>
+<h3 id="数据可访问"><a class="header" href="#数据可访问">数据可访问</a></h3>
+<p>后面的测试用例很容易地使用前面测试用例的数据。</p>
+<pre><code>{
+  test1: { @describe(&quot;登录&quot;)
+    ...
+    res: {
+      body: {
+        token: '', @type
+      }
+    }
+  },
+  test2: { @describe(&quot;发布文章&quot;)
+    req: {
+      headers: {
+        authorization: `&quot;Bearer &quot; + test1.res.body.token`, @eval // 此处访问了前面测试用例 test1 的响应数据
+      },
+    }
+  }
+}
+</code></pre>
+<h3 id="支持mock"><a class="header" href="#支持mock">支持Mock</a></h3>
+<p>有了Mock, 从此不再纠结编造数据。</p>
+<h3 id="支持mixin"><a class="header" href="#支持mixin">支持Mixin</a></h3>
+<p>巧用 Mixin，摆脱复制粘贴。</p>
+<h3 id="支持ci"><a class="header" href="#支持ci">支持CI</a></h3>
+<p>本身作为一款命令行工具，就十分容易和后端的ci集成在一起。而且 apitest 还提供了<code>--ci</code>选项专门就ci做了优化。</p>
+<h3 id="支持tdd"><a class="header" href="#支持tdd">支持TDD</a></h3>
+<p>用例就是json，所有你可以分分钟编写，这就十分有利于 tdd 了。</p>
+<p>你甚至可以只写 <code>req</code> 部分，接口有响应后再把响应数据直接贴过来作为 <code>res</code> 部分。经验之谈 🐶</p>
+<p>默认模式下(非ci)，当 Apitest 碰到失败的测试会打印错误并退出。 Apitest 有缓存测试数据，你可以不停重复执行错误的用例，边开发边测试， 直到走通才进入后续的测试。</p>
+<p>同时，你还可以通过 <code>--only</code> 选项选择某个测试用例执行。</p>
+<h3 id="支持用户定义函数"><a class="header" href="#支持用户定义函数">支持用户定义函数</a></h3>
+<p>这个功能你根本不需要用到。但我还是担心在某些极限或边角的场景下需要，所以还是支持了。</p>
+<p>Apitest 允许用户通过 js 编写用户定义函数构造请求数据或校验响应数据。(还敢号称跨编程语言吗？🐶) </p>
+<h3 id="跳过延时重试和循环"><a class="header" href="#跳过延时重试和循环">跳过,延时,重试和循环</a></h3>
+<h3 id="支持form文件上传graphql"><a class="header" href="#支持form文件上传graphql">支持Form,文件上传,GraphQL</a></h3>
+<h2 id="后记"><a class="header" href="#后记">后记</a></h2>
+<p>项目仓库: <a href="https://github.com/sigoden/apitest">github.com/sigoden/apitest</a></p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="argc-轻松处理-shell-命令行参数"><a class="header" href="#argc-轻松处理-shell-命令行参数">Argc: 轻松处理 shell 命令行参数</a></h1>
+<p>Argc 是一款可以轻松处理 shell 命令行参数的命令行工具</p>
+<p><img src="https://user-images.githubusercontent.com/4012553/158063004-e7a3534c-eb1a-47fb-9bbd-89a49345589a.gif" alt="demo" /></p>
+<p>使用 Argc 编写命令行程序，我们只需要做两件事情:</p>
+<ol>
+<li>在注释中描述我们需要的选项，参数，子命令</li>
+<li>调用如下命令委托 Argc 替我们处理命令行参数</li>
+</ol>
+<pre><code class="language-sh">eval &quot;(argc $0 &quot;$@&quot;)&quot;
+</code></pre>
+<p>Argc 会为我们做如下工作:</p>
+<ol>
+<li>从注释中提取参数定义</li>
+<li>解析命令行参数</li>
+<li>如果参数有异常，输出错误文本或帮助信息</li>
+<li>如果一切正常，输出解析好的参数变量</li>
+<li>如果有子命令，调用子命令函数</li>
+</ol>
+<p>我们可以很轻松地通过变量 <code>$argc_&lt;选项名/参数名&gt;</code> 访问对应选项或参数。</p>
+<h2 id="标签"><a class="header" href="#标签">标签</a></h2>
+<p>Argc 依据根据标签 (注释中带<code>@</code>标记字段) 生成解析规则和帮助文档。</p>
+<h3 id="describe"><a class="header" href="#describe">@describe</a></h3>
+<pre><code class="language-sh">@describe [string]
+
+# @describe A demo cli
+</code></pre>
+<p>定义描述</p>
+<h3 id="version"><a class="header" href="#version">@version</a></h3>
+<pre><code class="language-sh">@version [string]
+
+# @version 2.17.1 
+</code></pre>
+<p>定义版本</p>
+<h3 id="author"><a class="header" href="#author">@author</a></h3>
+<pre><code class="language-sh">@author [string]
+
+# @author nobody &lt;nobody@example.com&gt;
+</code></pre>
+<p>定义作者</p>
+<h3 id="help"><a class="header" href="#help">@help</a></h3>
+<pre><code class="language-sh">@help [false|string]
+
+# @help false   
+# @help Print help information
+</code></pre>
+<p>自定义帮助子命令</p>
+<ol>
+<li><code># @help false</code> 不生成帮助子命令</li>
+<li><code># @help Print help information</code> 自定义帮助子命令描述信息</li>
+</ol>
+<h3 id="cmd"><a class="header" href="#cmd">@cmd</a></h3>
+<pre><code class="language-sh">@cmd [string]
+
+# @cmd Upload a file
+upload() {
+}
+
+# @cmd Download a file
+download() {
+}
+</code></pre>
+<p>定义子命令</p>
+<h3 id="option"><a class="header" href="#option">@option</a></h3>
+<pre><code class="language-sh"># @cmd [short] [long][modifier] [notation] [string]
+
+# @option    --foo                A option
+# @option -f --foo                A option with short alias
+# @option    --foo &lt;PATH&gt;         A option with notation
+# @option    --foo!               A required option
+# @option    --foo*               A option with multiple values
+# @option    --foo+               A required option with multiple values
+# @option    --foo[a|b]           A option with choices
+# @option    --foo[=a|b]          A option with choices and default value
+# @option    --foo![a|b]          A required option with choices
+# @option -f --foo &lt;PATH&gt;         A option with short alias and notation
+</code></pre>
+<p>定义值选项</p>
+<h4 id="修饰符"><a class="header" href="#修饰符">修饰符</a></h4>
+<p>长选项名后面带的符号就是修饰符</p>
+<ul>
+<li><code>*</code>: 选项可选，可有多个值</li>
+<li><code>+</code>: 选项必选，可有多个值</li>
+<li><code>!</code>: 选项必选</li>
+<li><code>=value</code>: 选项带有默认值</li>
+<li><code>[a|b|c]</code>: 选项可选项集合</li>
+<li><code>[=a|b|c]</code>: 选项可选项集合，第一个可选项是默认值</li>
+</ul>
+<h4 id="值占位"><a class="header" href="#值占位">值占位</a></h4>
+<p>用来标示该选项是个值选项，而不是标志位。</p>
+<p>如果不提供，默认使用选项名作为占位。</p>
+<p>可以使用占位提示选项值类型 <code>&lt;NUM&gt;</code>, <code>&lt;PATH&gt;</code>, <code>&lt;PATTERN&gt;</code>, <code>&lt;DATE&gt;</code></p>
+<h3 id="flag"><a class="header" href="#flag">@flag</a></h3>
+<pre><code class="language-sh">@flag [short] [long] [help string]
+
+# @flag     --foo       A flag
+# @flag  -f --foo       A flag with short alias
+</code></pre>
+<p>定义标志选项</p>
+<h3 id="arg"><a class="header" href="#arg">@arg</a></h3>
+<pre><code class="language-sh">@arg &lt;name&gt;[modifier] [help string]
+
+# @arg value            A positional argument
+# @arg value!           A required positional argument
+# @arg value*           A positional argument support multiple values
+# @arg value+           A required positional argument support multiple values
+# @arg value[a|b]       A positional argument with choices
+# @arg value[=a|b]      A positional argument with choices and default value
+# @arg value![a|b]      A required positional argument with choices
+</code></pre>
+<p>定义位置参数</p>
+<h4 id="修饰符-1"><a class="header" href="#修饰符-1">修饰符</a></h4>
+<p>同<a href="argc.html#%E4%BF%AE%E9%A5%B0%E7%AC%A6">option修饰符</a></p>
+<h2 id="其他"><a class="header" href="#其他">其他</a></h2>
+<p><a href="https://github.com/sigoden/argc">https://github.com/sigoden/argc</a></p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="dufs-一款简单的文件服务器-支持静态文件伺服上传下载webdav-云盘"><a class="header" href="#dufs-一款简单的文件服务器-支持静态文件伺服上传下载webdav-云盘">Dufs: 一款简单的文件服务器， 支持静态文件伺服、上传、下载、webdav 云盘</a></h1>
+<p>Dufs 是一款实用文件服务器，支持静态文件服务、上传、搜素、访问控制、webdav云盘...</p>
+<p><img src="https://user-images.githubusercontent.com/4012553/174486522-7af350e6-0195-4f4a-8480-d9464fc6452f.png" alt="demo" /></p>
+<h2 id="特性-1"><a class="header" href="#特性-1">特性</a></h2>
+<ul>
+<li>静态文件服务</li>
+<li>下载目录为zip文件</li>
+<li>上传文件/目录 (支持拖拽)</li>
+<li>搜索文件</li>
+<li>并发下载，断续下载</li>
+<li>路径级别的访问控制</li>
+<li>支持https</li>
+<li>支持webdav</li>
+<li>方便curl调用</li>
+</ul>
+<p><em>Rust编写，单可执行文件，跨平台</em></p>
+<h2 id="其他-1"><a class="header" href="#其他-1">其他</a></h2>
+<p><a href="https://github.com/sigoden/dufs">https://github.com/sigoden/dufs</a></p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="dynimgen-自托管动态图片生成服务"><a class="header" href="#dynimgen-自托管动态图片生成服务">DynImgen: 自托管动态图片生成服务</a></h1>
+<p>DynImgen 是一款自托管动态图片生成服务，用来生成邀请海报，分享图片，用户名片等。</p>
+<p><img src="https://user-images.githubusercontent.com/4012553/172307949-8e739dcd-e322-44d7-8f29-6dd9aec87d71.gif" alt="demo" /></p>
+<h2 id="使用步骤"><a class="header" href="#使用步骤">使用步骤</a></h2>
+<ol>
+<li>设计师导出设计图为svg文件</li>
+</ol>
+<pre><code class="language-svg">&lt;svg&gt;
+  &lt;rect /&gt;
+  &lt;image src=&quot;img.png&quot; /&gt; 
+  &lt;image src=&quot;qr.png&quot; /&gt;
+  &lt;text&gt;66666&lt;/text&gt;
+&lt;/svg&gt;
+</code></pre>
+<ol start="2">
+<li>工程师编辑svg文件，把变动的部分用模板变量替代</li>
+</ol>
+<pre><code class="language-svg">&lt;svg&gt;
+  &lt;rect /&gt;
+  &lt;img src=&quot;{{ img | fetch }}&quot;&gt;
+  &lt;img src=&quot;{{ qr | to_qr }}&quot;&gt;
+  &lt;text&gt;{{ code }}&lt;/text&gt;
+&lt;/svg&gt;
+</code></pre>
+<ol start="3">
+<li>运行 <code>dynimgen</code>，必须确保svg模板在 <code>dynimgen</code> 工作目录下。</li>
+</ol>
+<pre><code class="language-sh">$ ls data
+Times New Roman.ttf   poster1.svg
+
+$ dynimgen data/
+[2022-06-05T14:51:53Z INFO  dynimgen::generator] Mount `/poster1`
+[2022-06-05T14:51:53Z INFO  dynimgen] Listen on 0.0.0.0:8080
+</code></pre>
+<ol start="4">
+<li>按照如下规则构建图片地址</li>
+</ol>
+<pre><code>&lt;域名&gt; + &lt;模板文件路径&gt; + ? + &lt;模板变量&gt;
+</code></pre>
+<p>例如,</p>
+<ul>
+<li>域名: http://localhost:8080</li>
+<li>模板文件路径: /poster1</li>
+<li>模板变量: { img: &quot;https://picsum.photos/250&quot;, qr: &quot;dynimgen&quot;, code: 12345 }</li>
+</ul>
+<p>组成链接:</p>
+<p>http://localhost:8080/poster1?img=https://picsum.photos/250&amp;qr=dynimgen&amp;code=12345</p>
+<p>访问该链接，你会得到一张PNG图片。</p>
+<p><code>dynimgen</code> 做了什么：</p>
+<ol>
+<li>请求路径中提取模板文件路径和变量数据</li>
+<li>将变量传递給模板引擎生成新的svg文件</li>
+<li>渲染svg文件为png文件，返回图片</li>
+</ol>
+<h2 id="方案优势"><a class="header" href="#方案优势">方案优势</a></h2>
+<h3 id="服务端渲染优势"><a class="header" href="#服务端渲染优势">服务端渲染优势</a></h3>
+<ul>
+<li>没有浏览器兼容，平台兼容等问题</li>
+<li>代码复用性高，h5、小程序、app的生成海报服务都可以使用。</li>
+<li>能够及时方便的更新</li>
+</ul>
+<h3 id="svg模板优势"><a class="header" href="#svg模板优势">SVG模板优势</a></h3>
+<ul>
+<li>直接从PS/AI等设计软件导出SVG</li>
+<li>不需要用html/canvas/dsl重现实现一遍</li>
+<li>无损还原设计稿，不丢失任何细节</li>
+<li>自由使用字体样式</li>
+</ul>
+<h3 id="rust优势"><a class="header" href="#rust优势">RUST优势</a></h3>
+<ul>
+<li>高性能，高并发</li>
+<li>单可执行程序，跨平台，易部署</li>
+</ul>
+<h2 id="其他-2"><a class="header" href="#其他-2">其他</a></h2>
+<p><a href="https://github.com/sigoden/dynimgen">https://github.com/sigoden/dynimgen</a></p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="neteasemusic-浏览器扩展版网易云音乐"><a class="header" href="#neteasemusic-浏览器扩展版网易云音乐">NeteaseMusic: 浏览器扩展版网易云音乐</a></h1>
+<p><img src="https://user-images.githubusercontent.com/4012553/140094889-71088388-7d10-47b2-8e2d-3c306dc0160f.png" alt="应用截图" /></p>
+<h2 id="功能"><a class="header" href="#功能">功能</a></h2>
+<ul>
+<li>无损音质播放</li>
+<li>收藏/取消收藏歌曲</li>
+<li>排行榜</li>
+<li>新歌速递</li>
+<li>每日推荐</li>
+<li>精选歌单</li>
+<li>音乐云盘</li>
+<li>私人歌单</li>
+</ul>
+<p><a href="https://github.com/sigoden/netease-music-crx">https://github.com/sigoden/netease-music-crx</a></p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="opscan-用-rust-开发的端口扫描工具"><a class="header" href="#opscan-用-rust-开发的端口扫描工具">Opscan: 用 Rust 开发的端口扫描工具</a></h1>
+<h2 id="特性-2"><a class="header" href="#特性-2">特性</a></h2>
+<ul>
+<li>快, 1秒扫描6万个端口</li>
+<li>简洁，扫一眼就会使用</li>
+<li>易安装，提供全平台单可执行文件，无需安装下载即用</li>
+</ul>
+<h2 id="示例"><a class="header" href="#示例">示例</a></h2>
+<p>列出所有本地监听端口:</p>
+<pre><code>$ opscan
+127.0.0.1 22    ssh
+127.0.0.1 631   ipp
+127.0.0.1 12345 netbus
+127.0.0.1 40559 unknown
+</code></pre>
+<p>测试某个端口是否畅通:</p>
+<pre><code>$ opscan www.baidu.com -p 80
+www.baidu.com 80   http
+
+$ opscan www.baidu.com -p 81
+</code></pre>
+<p>列出局域网内开放了某个端口的地址:</p>
+<pre><code>$ opscan 192.168.8 -p 22
+192.168.8.5   22 ssh
+192.168.8.4   22 ssh
+</code></pre>
+<p>扫描网站的 Top-N 端口:</p>
+<pre><code>opscan scanme.nmap.org -p top100
+opscan scanme.nmap.org -p top666
+</code></pre>
+<p>使用 Docker:</p>
+<pre><code>docker run --rm -it sigoden/opscan opscan.nmap.org
+</code></pre>
+<p>详见 <a href="https://github.com/sigoden/opscan">https://github.com/sigoden/opscan</a></p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="projclean-从系统中清除项目不必要文件目录"><a class="header" href="#projclean-从系统中清除项目不必要文件目录">ProjClean: 从系统中清除项目不必要文件目录</a></h1>
+<p>从系统中清除清理并删除包含库、依赖项、构建等的不必要目录。这些文件可以随时通过运行安装或构建命令轻松重新生成，清理它们可以节省磁盘空间，例如 Rust 项目中的 target 目录和 Node 项目中的 node_modules 目录。</p>
+<p><img src="https://user-images.githubusercontent.com/4012553/172361654-5fa36424-10da-4c52-b84a-f44c27cb1a17.gif" alt="screenshot" /></p>
+<h2 id="命令行"><a class="header" href="#命令行">命令行</a></h2>
+<pre><code>USAGE:
+    projclean [OPTIONS] [--] [PATH]
+
+ARGS:
+    &lt;PATH&gt;    Start searching from
+
+OPTIONS:
+    -h, --help              Print help information
+    -r, --rule &lt;RULE&gt;...    Add a search rule
+    -t, --targets           Print found target
+    -V, --version           Print version information
+</code></pre>
+<p>查找 node_modules 文件夹</p>
+<pre><code>projclean -r node_modules
+</code></pre>
+<p>从 $HOME 开始查找 node_modules 文件夹</p>
+<pre><code>projclean $HOME -r node_modules
+</code></pre>
+<p>同时查找 node_moduels 文件夹 和 rust 项目的 target 文件夹</p>
+<pre><code>projclean $HOME -r node_modules -r target@Cargo.toml
+</code></pre>
+<h2 id="规则"><a class="header" href="#规则">规则</a></h2>
+<p>Projclean 根据搜索规则查找目标。</p>
+<p>规则由两部分组成：</p>
+<pre><code>&lt;target-folder&gt;[@flag-file]
+</code></pre>
+<blockquote>
+<p>目标文件夹和标志文件都可以是纯文本或正则表达式。</p>
+</blockquote>
+<p>标志文件用于过滤掉只匹配名称但不匹配项目的文件夹。</p>
+<p>例如。 该目录包含以下内容：</p>
+<pre><code>.
+├── misc-proj
+│   └── target
+└── rust-proj
+    ├── Cargo.toml
+    └── target
+</code></pre>
+<p>规则 <code>target</code> 匹配了所有 <code>target</code> 文件夹</p>
+<pre><code>$ projclean -t -r target
+/tmp/demo/rust-proj/target
+/tmp/demo/misc-proj/target
+</code></pre>
+<p>规则 <code>target@Cargo.toml</code> 仅匹配属于 rust 项目下 <code>target</code> 文件夹</p>
+<pre><code>$ projclean -t -r target@Cargo.toml
+/tmp/demo/rust-proj/target
+</code></pre>
+<h2 id="项目"><a class="header" href="#项目">项目</a></h2>
+<p>常用项目的常用搜索规则：</p>
+<div class="table-wrapper"><table><thead><tr><th style="text-align: left">name</th><th style="text-align: left">command</th></tr></thead><tbody>
+<tr><td style="text-align: left">js</td><td style="text-align: left"><code>-r node_modules</code></td></tr>
+<tr><td style="text-align: left">rs</td><td style="text-align: left"><code>-r target@Cargo.toml</code></td></tr>
+<tr><td style="text-align: left">vs</td><td style="text-align: left"><code>-r '^(Debug\|Release)$@\.sln$'</code></td></tr>
+<tr><td style="text-align: left">ios</td><td style="text-align: left"><code>-r '^(build\|xcuserdata\|DerivedData)$@Podfile'</code></td></tr>
+<tr><td style="text-align: left">android</td><td style="text-align: left"><code>-r build@build.gradle</code></td></tr>
+<tr><td style="text-align: left">java</td><td style="text-align: left"><code>-r target@pom.xml</code></td></tr>
+<tr><td style="text-align: left">php</td><td style="text-align: left"><code>-r vendor@composer.json</code></td></tr>
+</tbody></table>
+</div>
+<h2 id="其他-3"><a class="header" href="#其他-3">其他</a></h2>
+<p><a href="https://github.com/sigoden/projclean">https://github.com/sigoden/projclean</a></p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="tomato-timer-命令行版番茄钟"><a class="header" href="#tomato-timer-命令行版番茄钟">Tomato-Timer: 命令行版番茄钟</a></h1>
+<p>Tomato Timer 是一款带桌面通知的番茄钟命令行工具。</p>
+<p><img src="https://user-images.githubusercontent.com/4012553/157780925-d363ec0a-cb2c-41bf-bd13-11ee91602f9f.gif" alt="screenshot" /></p>
+<h2 id="使用"><a class="header" href="#使用">使用</a></h2>
+<p>工作25分钟，休息5分钟</p>
+<pre><code>tomato-timer
+</code></pre>
+<p>工作45分钟，休息10分钟</p>
+<pre><code>tomato-timer -w 45 -b 10
+</code></pre>
+<p><a href="https://github.com/sigoden/tomato-timer">https://github.com/sigoden/tomato-timer</a></p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="windows-switcher-alt----切换同一应用不同窗口"><a class="header" href="#windows-switcher-alt----切换同一应用不同窗口">Windows-Switcher: Alt + `  切换同一应用不同窗口</a></h1>
+<p>Windows Switcher 是一款让您使用 <code>alt + `</code> 切换同一应用窗口的工具</p>
+<ul>
+<li>单个exe文件，大小仅200k</li>
+<li>便携，无需安装，直接运行</li>
+<li>托盘图标便捷设置开机启动</li>
+</ul>
+<p>项目仓库: <a href="https://github.com/sigoden/windows-switcher">github.com/sigoden/windows-switcher</a></p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="xf-多态命令自动脚本别名"><a class="header" href="#xf-多态命令自动脚本别名">Xf: 多态命令，自动脚本别名</a></h1>
+<p>Xf 是一款多态命令，自动脚本别名的命令行工具。</p>
+<p>Xf 会从当前目录往上寻找目标文件，根据找到的不同文件执行不同的命令。</p>
+<h2 id="介绍"><a class="header" href="#介绍">介绍</a></h2>
+<p>Xf 读取配置文件加载规则。</p>
+<blockquote>
+<p>配置文件默认位置是 <code>$HOME/.xf</code>，可以设置 <code>XF_CONFIG_PATH</code> 环境变量指定其他位置</p>
+</blockquote>
+<p>规则格式为:</p>
+<pre><code>&lt;文件&gt;: &lt;命令&gt;
+</code></pre>
+<p><code>xf</code> 尝试查找 <code>&lt;文件&gt;</code>，找到后该执行 <code>&lt;命令&gt;</code>。</p>
+<blockquote>
+<p><code>xf</code> 内置一条优先级最低规则: <code>Xfile: $file $@</code></p>
+</blockquote>
+<p>配置如下规则：</p>
+<pre><code>Taskfile: bash $file $@
+</code></pre>
+<p>执行 <code>xf foo</code>。</p>
+<p>首先，xf会在当前目录查找 <code>Taskfile</code> 文件，如果找到则执行 <code>bash $file foo</code>.</p>
+<p>如果未找到，则在当前目录继续寻找 <code>Xfile</code> 文件 ，如果找到则执行 <code>Xfile foo</code> (内置规则).</p>
+<p>如果都未找到，则进入上层目录继续这个流程。</p>
+<p>文件匹配规则:</p>
+<ol>
+<li>
+<p>忽略大小写。<code>Xfile</code> 能匹配文件 <code>xfile</code>， <code>xFile</code>。</p>
+</li>
+<li>
+<p>查找文件名包含规则文件名。<code>Xfile</code> 能匹配文件 <code>Xfile.sh</code>，<code>Xfile.cmd</code>。</p>
+</li>
+</ol>
+<h2 id="变量"><a class="header" href="#变量">变量</a></h2>
+<p>规则命令中可以使用如下内置变量 </p>
+<ul>
+<li><code>$@</code> - 透传命令行参数</li>
+<li><code>$file</code> - 文件路径</li>
+<li><code>$fileDir</code> - 文件目录，命令在文件目录中执行</li>
+<li><code>$currentDir</code> - 当前目录</li>
+</ul>
+<p>这些变量(<code>$@</code>除外)也会同步到环境变量:</p>
+<ul>
+<li><code>$file</code> =&gt; <code>$XF_FILE</code></li>
+<li><code>$fileDir</code> =&gt; <code>$XF_FILE_DIR</code></li>
+<li><code>$currentDir</code> =&gt; <code>$XF_CURRENT_DIR</code></li>
+</ul>
+<h2 id="命令名"><a class="header" href="#命令名">命令名</a></h2>
+<p>实际上，命令名称会影响内置规则和环境变量前缀。</p>
+<p>如果将可执行文件 <code>xf</code> 重命名为 <code>task</code></p>
+<ol>
+<li>
+<p>内置规则将是 <code>Taskfile: $file $@</code></p>
+</li>
+<li>
+<p>默认的配置文件路径将变成 <code>$HOME/.task</code>。</p>
+</li>
+<li>
+<p>环境变量 <code>XF_CONFIG_PATH</code> 变成 <code>TASK_CONFIG_PATH</code>。</p>
+</li>
+<li>
+<p><code>$file</code> 对应环境变量将变成 <code>TASK_FILE</code>。</p>
+</li>
+</ol>
+<h2 id="其他-4"><a class="header" href="#其他-4">其他</a></h2>
+<p><a href="https://github.com/sigoden/xf">https://github.com/sigoden/xf</a></p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+        <script>
+        window.addEventListener('load', function() {
+            window.setTimeout(window.print, 100);
+        });
+        </script>
+
+    </body>
+</html>
