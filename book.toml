@@ -1,0 +1,6 @@
+[book]
+authors = ["sigoden"]
+language = "zh_Hans "
+multilingual = false
+src = "src"
+title = "SIGODEN的开源项目"
