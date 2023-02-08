@@ -7,9 +7,9 @@ on:
   pull_request:
 
 jobs:
-  permissions:
-    issues: write 
   deploy:
+    permissions:
+      issues: write 
     runs-on: ubuntu-latest
     concurrency:
       group: ${{ github.workflow }}-${{ github.ref }}
