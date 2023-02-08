@@ -4,3 +4,6 @@ language = "zh_Hans "
 multilingual = false
 src = "src"
 title = "SIGODEN的开源项目"
+
+[output.html]
+git-repository-url = "https://github.com/sigoden/mydocs"
