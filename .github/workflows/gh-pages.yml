@@ -9,7 +9,7 @@ on:
 jobs:
   deploy:
     permissions:
-      pages: write
+      contents: write
     runs-on: ubuntu-latest
     concurrency:
       group: ${{ github.workflow }}-${{ github.ref }}
