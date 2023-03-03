@@ -1,4 +1,5 @@
 [Projects](./README.md)
+* [AIChat](./aichat.md)
 * [Apitest](./apitest.md)
 * [Argc](./argc.md)
 * [Dufs](./dufs.md)

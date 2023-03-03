@@ -2,7 +2,7 @@
 
 Dufs 是一款实用文件服务器，支持静态文件服务、上传、搜素、访问控制、webdav云盘...
 
-![demo](https://user-images.githubusercontent.com/4012553/174486522-7af350e6-0195-4f4a-8480-d9464fc6452f.png)
+![demo](https://user-images.githubusercontent.com/4012553/220513063-ff0f186b-ac54-4682-9af4-47a9781dee0d.png)
 
 ## 特性
 
